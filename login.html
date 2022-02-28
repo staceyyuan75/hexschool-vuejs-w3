@@ -29,18 +29,24 @@
             請先登入
           </h1>
           <div class="col-8">
-            <form id="form" class="form-signin">
+            <form id="form" class="form-signin" @submit.prevent="login">
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="username"
+                <input type="email" class="form-control" :class="isValid.username ? '' : 'is-invalid' " id="username"
                   placeholder="name@example.com" required autofocus>
                 <label for="username">Email address</label>
+                <div class="invalid-feedback">
+                  請輸入帳號.
+                </div>
               </div>
               <div class="form-floating">
-                <input type="password" class="form-control" id="password"
-                  placeholder="Password" required>
+                <input type="password" class="form-control" :class="isValid.password ? '': 'is-invalid' " id="password"
+                  placeholder="Password" required v-model="password">
                 <label for="password">Password</label>
+                <div class="invalid-feedback">
+                  請輸入密碼.
+                </div>
               </div>
-              <button class="btn btn-lg btn-primary w-100 mt-3" type="button" @click="login">
+              <button class="btn btn-lg btn-primary w-100 mt-3" type="submit" @click="login">
                 登入
               </button>
             </form>
